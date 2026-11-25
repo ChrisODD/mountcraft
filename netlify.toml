@@ -1,0 +1,40 @@
+# Mount & Craft - static site (no build step)
+[build]
+  publish = "."
+
+# Extensionless URLs work even if "Pretty URLs" is turned off in the Netlify UI.
+[[redirects]]
+  from = "/wiki"
+  to = "/wiki.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/guide/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

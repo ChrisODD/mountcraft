@@ -1,0 +1,514 @@
+<!doctype html><html lang="en"><head><meta charset=utf8><title>Mount &amp; Craft | Medieval Warfare Minecraft Server</title><meta name="description" content="Mount &amp; Craft turns Minecraft into a medieval warfare sandbox. Raise a warband, drill soldiers, join or found a faction and conquer settlements. Install the modpack on Technic Launcher to play. Server coming soon."><link rel="canonical" href="https://mountandcraft.com/"><meta property="og:type" content="website"><meta property="og:url" content="https://mountandcraft.com/"><meta property="og:title" content="Mount &amp; Craft | Medieval Warfare Minecraft Server"><meta property="og:description" content="Raise a warband, join a faction and conquer settlements. Server coming soon."><meta property="og:image" content="https://mountandcraft.com/img/castle-town.webp"><meta name="twitter:card" content="summary_large_image"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#12161a"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Jacquard+24&family=Silkscreen:wght@400;700&display=swap">
+<style>
+/* Layout: full-bleed castle hero with a left-aligned wordmark, a ribbon of keywords, a split feature section,
+   a parchment band with crenellated edge, then a map + kingdom ledger, then a server status block. */
+:root {
+  --night: #12161a;
+  --stone: #1c2227;
+  --stone-hi: #262e35;
+  --line: #34404a;
+  --parch: #eadfc4;
+  --parch-dim: #b7b09a;
+  --scroll: #d9c9a0;
+  --ink: #1e1810;
+  --ink-dim: #4a3f2c;
+  --banner: #c23a2f;
+  --banner-dk: #8f2a22;
+  --banner-lt: #ee8378;
+  --brass: #d8a93f;
+
+  --f-display: "Jacquard 24", "Pirata One", Georgia, serif;
+  --f-body: "Alegreya", Georgia, "Times New Roman", serif;
+  --f-pixel: "Silkscreen", "Courier New", monospace;
+
+  --px: 6px;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+
+body {
+  background: var(--night);
+  color: var(--parch);
+  font-family: var(--f-body);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; height: auto; }
+.px-img { image-rendering: pixelated; image-rendering: crisp-edges; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; }
+
+.wrap {
+  width: 100%;
+  max-width: 1160px;
+  margin-inline: auto;
+  padding-left: var(--gutter-l);
+  padding-right: var(--gutter-r);
+}
+
+/* shared type */
+.label {
+  font-family: var(--f-pixel);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0;
+}
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; line-height: 1; margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(2.6rem, 6.4vw, 4.25rem); letter-spacing: 0.01em; }
+p { margin: 0; }
+.lede { max-width: 58ch; color: var(--parch); }
+.muted { color: var(--parch-dim); }
+
+/* stepped "pixel" corners */
+.plate {
+  --c: var(--px);
+  clip-path: polygon(0 var(--c), var(--c) var(--c), var(--c) 0,
+    calc(100% - var(--c)) 0, calc(100% - var(--c)) var(--c), 100% var(--c),
+    100% calc(100% - var(--c)), calc(100% - var(--c)) calc(100% - var(--c)), calc(100% - var(--c)) 100%,
+    var(--c) 100%, var(--c) calc(100% - var(--c)), 0 calc(100% - var(--c)));
+}
+
+/* buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--f-pixel);
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.95rem 1.3rem;
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform 0.08s steps(2), box-shadow 0.08s steps(2);
+}
+.btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+.btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
+.btn-primary { background: var(--banner); color: #fff6e6; }
+.btn-ghost { background: var(--parch); color: var(--ink); }
+
+/* ---------- hero ---------- */
+.hero { position: relative; isolation: isolate; overflow: hidden; border-bottom: 6px solid var(--ink); }
+.hero-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 62%;
+  z-index: -2;
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(18,22,26,0.94) 0%, rgba(18,22,26,0.78) 42%, rgba(18,22,26,0.2) 100%),
+    linear-gradient(0deg, rgba(18,22,26,0.85) 0%, rgba(18,22,26,0) 38%);
+}
+.topbar{display:flex;justify-content:center;align-items:center;gap:.8rem;padding:.5rem 1rem;background:var(--ink);position:relative;z-index:5}
+.topbar a{font-weight:700;font-size:.95rem;color:#fff6e6;text-decoration:none;padding:.35rem .9rem;border:2px solid var(--brass)}
+.topbar a:hover{background:var(--brass);color:var(--ink)}
+.topbar a.donate{background:var(--banner);border-color:var(--banner)}
+.nav {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding-block: 1.25rem;
+}
+.nav-mark { font-family: var(--f-display); font-size: 2rem; line-height: 1; text-decoration: none; }
+.nav-mark span { color: var(--brass); }
+.nav ul { display: flex; gap: 1.6rem; list-style: none; margin: 0; padding: 0; }
+.nav a.nav-link {
+  font-family: var(--f-pixel); font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase;
+  text-decoration: none; color: var(--parch); padding-block: 0.4rem; border-bottom: 2px solid transparent;
+}
+.nav a.nav-link:hover { border-bottom-color: var(--brass); }
+
+.hero-body { padding-block: clamp(3.5rem, 9vw, 7.5rem) clamp(3.5rem, 8vw, 6.5rem); }
+.status {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  background: var(--brass); color: var(--ink);
+  font-family: var(--f-pixel); font-weight: 700; font-size: 0.8125rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.55rem 0.9rem;
+}
+.status i { width: 10px; height: 10px; background: var(--banner-dk); animation: blink 1.4s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0.15; } }
+.wordmark {
+  font-size: clamp(4rem, 15vw, 10.5rem);
+  line-height: 0.88;
+  margin-top: 1.4rem;
+  text-shadow: 6px 6px 0 var(--ink);
+}
+.wordmark .amp { color: var(--brass); }
+.tag {
+  font-family: var(--f-display); font-size: clamp(1.7rem, 4.4vw, 2.9rem); line-height: 1.05;
+  margin-top: 1.25rem; max-width: 22ch; text-wrap: balance;
+  text-shadow: 3px 3px 0 var(--ink);
+}
+.hero .lede { margin-top: 1.4rem; text-shadow: 0 1px 0 var(--ink); }
+.cta { display: flex; flex-wrap: wrap; gap: 1rem 1.25rem; margin-top: 2.2rem; }
+
+/* ribbon */
+.ribbon { background: var(--stone-hi); border-bottom: 2px solid var(--ink); }
+.ribbon ul {
+  list-style: none; margin: 0; padding: 0.95rem 0;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem;
+  font-family: var(--f-pixel); font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--parch-dim);
+}
+.ribbon li::before { content: ""; display: inline-block; width: 8px; height: 8px; background: var(--brass); margin-right: 0.7rem; }
+
+/* ---------- mod ---------- */
+.section { padding-block: clamp(4rem, 9vw, 7rem); }
+.mod-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+.frame { background: var(--stone-hi); padding: 10px; }
+.frame img { width: 100%; }
+.frame figcaption { font-family: var(--f-pixel); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--parch-dim); padding: 0.8rem 0.3rem 0.2rem; }
+.mod-copy { display: flex; flex-direction: column; gap: 1.2rem; min-width: 0; }
+.feat { list-style: none; margin: 0.8rem 0 0; padding: 0; display: grid; gap: 1.4rem; }
+.feat li { display: grid; grid-template-columns: 14px minmax(0, 1fr); column-gap: 1rem; }
+.feat li::before { content: ""; width: 14px; height: 14px; background: var(--banner); margin-top: 0.5rem; box-shadow: 3px 3px 0 var(--ink); }
+.feat h3 { font-family: var(--f-body); font-weight: 700; font-size: 1.3rem; line-height: 1.25; }
+.feat p { color: var(--parch-dim); margin-top: 0.2rem; }
+
+/* ---------- parchment band ---------- */
+.scroll { position: relative; background: var(--scroll); color: var(--ink); padding-block: clamp(5rem, 10vw, 8rem) clamp(4rem, 9vw, 7rem); }
+.scroll::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 18px;
+  background: repeating-linear-gradient(90deg, var(--night) 0 24px, transparent 24px 48px);
+}
+.scroll-grid { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+.art { border: 3px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); background: var(--scroll); }
+.art figcaption { font-family: var(--f-pixel); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-dim); padding: 0.7rem 0.8rem; border-top: 3px solid var(--ink); }
+.scroll .label { color: var(--banner-dk); }
+.scroll h2 { margin-top: 0.8rem; }
+.scroll p { margin-top: 1.2rem; max-width: 54ch; font-size: 1.2rem; }
+.scroll .quote { font-style: italic; color: var(--ink-dim); }
+
+/* ---------- kingdoms ---------- */
+.k-head { display: flex; flex-direction: column; gap: 1rem; max-width: 60ch; margin-bottom: 2.4rem; }
+.k-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); align-items: start; }
+.k-map { background: var(--stone); padding: 10px; }
+.k-map figcaption { font-size: 0.95rem; color: var(--parch-dim); padding: 0.8rem 0.3rem 0.2rem; }
+.k-map figcaption a { color: var(--parch); text-decoration: underline; }
+.k-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.kingdom {
+  display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; column-gap: 0.9rem; row-gap: 0.1rem; align-items: center;
+  background: var(--stone); padding: 0.85rem 1rem; cursor: default; transition: opacity 0.15s steps(3), background 0.15s steps(3);
+}
+.kingdom .sw { width: 22px; height: 22px; grid-row: 1 / span 2; box-shadow: 3px 3px 0 var(--ink); background: var(--c); }
+.kingdom .nm { font-weight: 700; font-size: 1.25rem; line-height: 1.2; }
+.kingdom .held { font-family: var(--f-pixel); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--parch-dim); text-align: right; }
+.k-list.hovering .kingdom { opacity: 0.4; }
+.k-list.hovering .kingdom.on { opacity: 1; background: var(--stone-hi); }
+.k-note { margin-top: 1.2rem; font-size: 0.98rem; color: var(--parch-dim); }
+
+/* ---------- server ---------- */
+.server { background: var(--stone); border-top: 6px solid var(--ink); }
+.server-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+.server-copy { display: flex; flex-direction: column; gap: 1.3rem; min-width: 0; }
+.ledger { margin: 0.6rem 0 0; display: grid; background: var(--night); padding: 0.4rem 1.2rem; }
+.ledger div { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.85rem 0; border-bottom: 2px solid var(--stone-hi); }
+.ledger div:last-child { border-bottom: 0; }
+.ledger dt { font-family: var(--f-pixel); font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--parch-dim); }
+.ledger dd { margin: 0; font-weight: 700; display: inline-flex; align-items: center; gap: 0.6rem; text-align: right; }
+.ledger dd i { width: 10px; height: 10px; flex: none; background: var(--c); }
+
+/* ---------- play / ip ---------- */
+.ip{display:inline-flex;align-items:center;gap:.9rem;flex-wrap:wrap;margin-top:1.6rem;background:var(--night);border:2px solid var(--brass);padding:.55rem .6rem .55rem 1rem}
+.ip code{font-family:var(--f-pixel);font-size:1rem;letter-spacing:.06em;color:var(--parch)}
+.ip button{font:inherit;font-family:var(--f-pixel);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;background:var(--brass);color:var(--ink);border:0;padding:.6rem .9rem;cursor:pointer}
+.ip button:hover{background:var(--parch)}
+.steps{list-style:none;margin:2.4rem 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;counter-reset:s}
+.steps li{background:var(--stone);padding:1.4rem 1.2rem 1.5rem;counter-increment:s}
+.steps li::before{content:"0" counter(s);font-family:var(--f-pixel);font-size:.8125rem;color:var(--brass);letter-spacing:.08em}
+.steps h3{font-family:var(--f-body);font-weight:700;font-size:1.3rem;line-height:1.25;margin-top:.6rem}
+.steps p{color:var(--parch-dim);margin-top:.4rem;font-size:1.02rem}
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
+.pillars div{background:var(--stone-hi);padding:1.2rem}
+.pillars h3{font-family:var(--f-body);font-weight:700;font-size:1.2rem;color:var(--banner-lt)}
+.pillars p{color:var(--parch-dim);margin-top:.3rem;font-size:1.02rem}
+@media (max-width:860px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.pillars{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.steps{grid-template-columns:minmax(0,1fr)}.ip{width:100%}.ip button{width:100%}}
+
+/* ---------- install (required) ---------- */
+.req{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--f-pixel);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--banner-lt);margin-top:1.6rem}
+.req b{background:var(--banner);color:#fff6e6;padding:.3rem .5rem;font-weight:700}
+.req a{color:var(--parch)}
+.hero .req + .ip{margin-top:.7rem}
+.install{background:var(--banner-dk);border-bottom:6px solid var(--ink)}
+.install .label{color:#ffd9a0}
+.install .lede{color:#fff1dc}
+.install-steps{list-style:none;margin:2.2rem 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;counter-reset:i}
+.install-steps li{background:var(--night);padding:1.4rem 1.2rem 1.5rem;counter-increment:i;display:flex;flex-direction:column;gap:.5rem}
+.install-steps li::before{content:"Step " counter(i);font-family:var(--f-pixel);font-size:.8125rem;color:var(--brass);letter-spacing:.08em;text-transform:uppercase}
+.install-steps h3{font-family:var(--f-body);font-weight:700;font-size:1.3rem;line-height:1.25}
+.install-steps p{color:var(--parch-dim);font-size:1.02rem}
+.install-steps .btn{margin-top:auto;align-self:flex-start}
+.install-warn{margin-top:1.4rem;max-width:70ch;color:#fff1dc;font-size:1.02rem}
+@media (max-width:860px){.install-steps{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- footer ---------- */
+.foot { background: var(--night); border-top: 6px solid var(--ink); padding-block: 2.4rem 3rem; }
+.foot-in { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.2rem 2rem; align-items: flex-start; }
+.foot .nav-mark { font-size: 2.2rem; }
+.foot p { max-width: 62ch; font-size: 0.92rem; color: var(--parch-dim); line-height: 1.5; }
+.foot .copyright { margin-top: 1.6rem; font-family: var(--f-pixel); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--parch-dim); }
+.connect { margin-top: 2rem; display: grid; gap: 1rem; }
+.connect-links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.8rem 1rem; }
+.connect .support { justify-self: start; }
+.legal-links a { font-family: var(--f-pixel); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--parch); text-decoration: none; border-bottom: 2px solid transparent; }
+.legal-links a:hover { border-bottom-color: var(--brass); }
+.legal-links { list-style: none; margin-block: 1.6rem 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+  .mod-grid, .scroll-grid, .k-grid, .server-grid { grid-template-columns: minmax(0, 1fr); }
+  .scroll-grid .art { max-width: 420px; }
+  .hero::after {
+    background:
+      linear-gradient(0deg, rgba(18,22,26,0.96) 0%, rgba(18,22,26,0.82) 55%, rgba(18,22,26,0.55) 100%);
+  }
+  .ribbon ul { justify-content: flex-start; }
+}
+@media (max-width: 560px) {
+  .nav ul { display: none; }
+  .btn { width: 100%; justify-content: center; }
+  .cta { flex-direction: column; }
+  .ledger div { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+  .ledger dd { text-align: left; }
+}
+</style>
+
+<div class="topbar"><a href="https://discord.com/invite/7SEHekhr73" target="_blank" rel="noopener">Join Discord</a><a class="donate" href="https://ko-fi.com/oddstan" target="_blank" rel="noopener">&#9829; Donate</a></div>
+<header class="hero">
+  <img class="hero-img px-img" src="img/castle-town.webp" alt="" width="1536" height="821" fetchpriority="high">
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <a class="nav-mark" href="#top">Mount <span>&amp;</span> Craft</a>
+      <ul>
+        <li><a class="nav-link" href="#install">Install</a></li>
+        <li><a class="nav-link" href="#play">How to play</a></li>
+        <li><a class="nav-link" href="#mod">The mod</a></li>
+        <li><a class="nav-link" href="#kingdoms">Kingdoms</a></li>
+        <li><a class="nav-link" href="#server">Server</a></li>
+        <li><a class="nav-link" href="/guide">Guide</a></li>
+        <li><a class="nav-link" href="/wiki">Wiki</a></li>
+        <li><a class="nav-link" href="http://83.229.67.150:8123/" target="_blank" rel="noopener">Live map</a></li>
+      </ul>
+    </nav>
+    <div class="hero-body" id="top">
+      <p class="status"><i aria-hidden="true"></i>Server coming soon</p>
+      <h1 class="wordmark">Mount <span class="amp">&amp;</span> Craft</h1>
+      <p class="tag">Raise a warband. Take the field.</p>
+      <p class="lede">Mount &amp; Craft turns Minecraft into a proper medieval warfare sandbox. Drill your warband into actual soldiers and lead them into battle, because a lone player with a sword only gets you so far.</p>
+      <p class="req"><b>Coming soon</b><span>The server isn't open yet. Follow our socials below to keep up with the latest updates.</span></p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://www.technicpack.net/modpack/mount-craft.2019066" target="_blank" rel="noopener">Download the modpack</a>
+        <a class="btn btn-ghost" href="https://www.curseforge.com/minecraft/mc-mods/mount-craft" target="_blank" rel="noopener">Get it on CurseForge</a>
+        <a class="btn btn-ghost" href="#install">How to join</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="ribbon">
+  <div class="wrap">
+    <ul>
+      <li>Warbands</li>
+      <li>Drilled soldiers</li>
+      <li>Player factions</li>
+      <li>Settlement conquest</li>
+      <li>Geopolitical war</li>
+    </ul>
+  </div>
+</div>
+
+<main>
+  <section class="install section" id="install" aria-labelledby="i-h">
+    <div class="wrap">
+      <div class="k-head">
+        <p class="label">Before you join</p>
+        <h2 id="i-h">Choose your version.</h2>
+        <p class="lede">Mount &amp; Craft runs on a custom modpack, installed through Technic Launcher or CurseForge.</p>
+      </div>
+      <ol class="install-steps">
+        <li><h3>Get a launcher</h3><p>Download and install the free Technic Launcher or the CurseForge app, then sign in with your Minecraft account.</p><a class="btn btn-ghost" href="https://www.technicpack.net/download" target="_blank" rel="noopener">Get Technic Launcher</a><a class="btn btn-ghost" href="https://www.curseforge.com/download/app" target="_blank" rel="noopener">Get CurseForge</a></li>
+        <li><h3>Install Mount &amp; Craft</h3><p>Open the Mount &amp; Craft modpack page and click Install, or search &ldquo;Mount &amp; Craft&rdquo; in your launcher&rsquo;s Modpacks tab.</p><a class="btn btn-primary" href="https://www.technicpack.net/modpack/mount-craft.2019066" target="_blank" rel="noopener">Download on Technic</a><a class="btn btn-ghost" href="https://www.curseforge.com/minecraft/mc-mods/mount-craft" target="_blank" rel="noopener">Download on CurseForge</a></li>
+        <li><h3>Launch and join</h3><p>Hit Play on the modpack in your launcher. The server opens soon, so follow our socials for updates.</p></li>
+      </ol>
+      <p class="install-warn">If you play, always launch Minecraft from the Mount &amp; Craft modpack in Technic Launcher or the CurseForge app. Keep the modpack updated in the launcher when a new version comes out, or the server will turn you away.</p>
+    </div>
+  </section>
+
+  <section class="section" id="play" aria-labelledby="p-h">
+    <div class="wrap">
+      <div class="k-head">
+        <p class="label">How to play</p>
+        <h2 id="p-h">One sword is a skirmish. An army is a war.</h2>
+        <p class="lede muted">Mount &amp; Craft is a geopolitical sandbox. You play alongside other people, and the land is won by whoever brings the better army.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Raise a warband</h3><p>Recruit followers and build a fighting force that follows you into the field.</p></li>
+        <li><h3>Drill them</h3><p>Train recruits into real soldiers: infantry, archers and cavalry who hold a line.</p></li>
+        <li><h3>Join a faction</h3><p>Sign up with an existing faction, or found your own and set its banner.</p></li>
+        <li><h3>Conquer settlements</h3><p>March your army on towns and castles, take them and hold them against rivals.</p></li>
+      </ol>
+      <div class="pillars">
+        <div><h3>Play together</h3><p>Factions are built from real players: allies, rivals and the politics between them.</p></div>
+        <div><h3>Command, don&rsquo;t just fight</h3><p>Formation and numbers decide battles. Lone heroes get overrun.</p></div>
+        <div><h3>Make your own place</h3><p>Pick a spot in the geopolitical map and carve out your own power.</p></div>
+      </div>
+      <p class="req" style="margin-top:2.4rem"><b>Player's guide</b><span>New to Calradia? The <a href="/guide">player's guide</a> covers the controls, warbands, companion inventories, battle, sieges, marriage, faith and building, chapter by chapter.</span></p>
+    </div>
+  </section>
+
+  <section class="section" id="mod" style="padding-top:0">
+    <div class="wrap mod-grid">
+      <figure class="frame plate" style="margin:0">
+        <img class="px-img" src="img/mounted-troops.webp" alt="Mounted knights in chainmail and helms, a lance raised, with two bearded soldiers behind a wooden shield wall" width="1280" height="683" loading="lazy">
+      </figure>
+      <div class="mod-copy">
+        <p class="label">The mod</p>
+        <h2>Ride, fight, hold the line.</h2>
+        <p class="lede">The feel of a medieval battlefield inside Minecraft: horses under you, steel in hand, a drilled army at your back and a world that is always at war.</p>
+        <ul class="feat">
+          <li>
+            <div><h3>Mounted combat</h3><p>Charge in on horseback with a lance, or dismount and fight on foot with sword and shield.</p></div>
+          </li>
+          <li>
+            <div><h3>Armour and arms</h3><p>Chainmail, plated shoulders and helms, with spears, maces, swords and bows to go with them.</p></div>
+          </li>
+          <li>
+            <div><h3>Castles and towns</h3><p>Walled towns with gatehouses, stables and training grounds with archery targets.</p></div>
+          </li>
+          <li>
+            <div><h3>A world at war</h3><p>Rival factions with their own towns, castles and armies, and the wars between them.</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="kingdoms" aria-labelledby="k-h">
+    <div class="wrap">
+      <div class="k-head">
+        <p class="label">The realm of Calradia</p>
+        <h2 id="k-h">Join a faction, or make one.</h2>
+        <p class="lede muted">Six kingdoms hold the map and three wars are already burning. Pick one to see who it is fighting, swear to a side, or found a faction of your own and take your place in the fight.</p>
+      </div>
+      <div class="k-grid">
+        <figure class="k-map plate" style="margin:0">
+          <img class="px-img" src="img/calradia-map.webp" alt="In-game world map of Calradia with six coloured kingdoms: Swadia, Vaegirs, Khergit, Nords, Rhodoks and Sarranid, with towns, castles and lords marked" width="1280" height="691" loading="lazy">
+          <figcaption>World map of Calradia. <a href="http://83.229.67.150:8123/" target="_blank" rel="noopener">Open the live web map</a> to see the server as it is right now.</figcaption>
+        </figure>
+        <div>
+          <ul class="k-list" id="kingdom-list">
+            <li class="kingdom plate" tabindex="0" data-name="Swadia" data-foe="Sarranid" style="--c:#ef7b45"><span class="sw"></span><span class="nm">Swadia</span><span class="held">13 held</span></li>
+            <li class="kingdom plate" tabindex="0" data-name="Vaegirs" data-foe="Rhodoks" style="--c:#d6c79f"><span class="sw"></span><span class="nm">Vaegirs</span><span class="held">12 held</span></li>
+            <li class="kingdom plate" tabindex="0" data-name="Khergit" data-foe="Nords" style="--c:#b98fe8"><span class="sw"></span><span class="nm">Khergit</span><span class="held">11 held</span></li>
+            <li class="kingdom plate" tabindex="0" data-name="Nords" data-foe="Khergit" style="--c:#35d6d6"><span class="sw"></span><span class="nm">Nords</span><span class="held">10 held</span></li>
+            <li class="kingdom plate" tabindex="0" data-name="Rhodoks" data-foe="Vaegirs" style="--c:#2fd13a"><span class="sw"></span><span class="nm">Rhodoks</span><span class="held">11 held</span></li>
+            <li class="kingdom plate" tabindex="0" data-name="Sarranid" data-foe="Swadia" style="--c:#e6dc2a"><span class="sw"></span><span class="nm">Sarranid</span><span class="held">13 held</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="server section" id="server" aria-labelledby="s-h">
+    <div class="wrap server-grid">
+      <div class="server-copy">
+        <p class="label">The server</p>
+        <h2 id="s-h">Join the war.</h2>
+        <p class="lede">Install the modpack from Technic, pick a faction and ride out with everyone else. Raise your warband, drill them hard and take a settlement.</p>
+        <dl class="ledger plate">
+          <div><dt>Modpack</dt><dd><i style="--c:var(--banner-lt)" aria-hidden="true"></i><a href="https://www.technicpack.net/modpack/mount-craft.2019066" target="_blank" rel="noopener">Technic modpack</a></dd></div>
+          <div><dt>Live map</dt><dd><i style="--c:var(--banner-lt)" aria-hidden="true"></i><a href="http://83.229.67.150:8123/" target="_blank" rel="noopener">Open web map</a></dd></div>
+          <div><dt>Status</dt><dd><i style="--c:var(--brass)" aria-hidden="true"></i>Coming soon</dd></div>
+          <div><dt>Style</dt><dd><i style="--c:var(--banner)" aria-hidden="true"></i>Medieval warfare sandbox</dd></div>
+        </dl>
+        <p class="req" style="margin-top:0"><b>Modpack</b><span>Install the <a href="https://www.technicpack.net/modpack/mount-craft.2019066" target="_blank" rel="noopener">modpack on Technic</a> or <a href="https://www.curseforge.com/minecraft/mc-mods/mount-craft" target="_blank" rel="noopener">on CurseForge</a> to play</span></p>
+        <p class="req" style="margin-top:0"><b>Coming soon</b><span>The server isn't open yet. Follow our socials below to keep up with the latest updates.</span></p>
+        <a class="btn btn-primary" href="https://www.technicpack.net/modpack/mount-craft.2019066" target="_blank" rel="noopener" style="align-self:flex-start">Download the modpack</a>
+        <a class="btn btn-ghost" href="https://www.curseforge.com/minecraft/mc-mods/mount-craft" target="_blank" rel="noopener" style="align-self:flex-start">Get it on CurseForge</a>
+        <a class="btn btn-ghost" href="http://83.229.67.150:8123/" target="_blank" rel="noopener" style="align-self:flex-start">View the live map</a>
+      </div>
+      <figure class="frame plate" style="margin:0">
+        <img class="px-img" src="img/swordsman.webp" alt="A soldier in a brown tunic raising a sword, a round shield on his arm, standing under an oak tree" width="1280" height="683" loading="lazy">
+      </figure>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a class="nav-mark" href="#top">Mount <span>&amp;</span> Craft</a>
+    <p>Mount &amp; Craft is an unofficial fan project. It is not an official Minecraft product and is not approved by or associated with Mojang or Microsoft. Mount &amp; Blade is a trademark of TaleWorlds Entertainment, which is not affiliated with this project.</p>
+  </div>
+  <div class="wrap connect">
+    <p class="label">Stay connected</p>
+    <ul class="connect-links">
+      <li><a class="btn btn-ghost" href="https://www.instagram.com/projectoddstania" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a class="btn btn-ghost" href="https://www.tiktok.com/@oddstantine" target="_blank" rel="noopener">TikTok</a></li>
+      <li><a class="btn btn-ghost" href="https://www.youtube.com/@ODDstan2" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a class="btn btn-ghost" href="https://discord.com/invite/7SEHekhr73" target="_blank" rel="noopener">Join the Discord</a></li>
+      <li><a class="btn btn-ghost" href="https://www.patreon.com/c/ODDstan" target="_blank" rel="noopener">Support on Patreon</a></li>
+      <li><a class="btn btn-ghost" href="https://t.me/projectoddstania" target="_blank" rel="noopener">Join the Telegram channel</a></li>
+    </ul>
+    <a class="btn btn-primary support" href="https://ko-fi.com/oddstan" target="_blank" rel="noopener">Support the project on Ko-fi</a>
+  </div>
+  <ul class="foot-links wrap legal-links">
+    <li><a href="/privacy">Privacy policy</a></li>
+    <li><a href="/terms">Terms and conditions</a></li>
+  </ul>
+  <p class="copyright wrap">Project ODDstania @ 2026. All rights reserved</p>
+</footer>
+
+<script>
+document.addEventListener('click',function(e){
+  var b=e.target.closest&&e.target.closest('[data-copy]');if(!b)return;
+  var t=b.getAttribute('data-copy'),o=b.textContent;
+  function done(){b.textContent='Copied!';setTimeout(function(){b.textContent=o;},1600);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){});}
+  else{var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done();}catch(x){}document.body.removeChild(a);}
+});
+</script>
+<script>
+(function () {
+  var list = document.getElementById('kingdom-list');
+  if (!list) return;
+  var items = Array.prototype.slice.call(list.querySelectorAll('.kingdom'));
+  function show(el) {
+    var foe = el.getAttribute('data-foe');
+    list.classList.add('hovering');
+    items.forEach(function (i) {
+      i.classList.toggle('on', i === el || i.getAttribute('data-name') === foe);
+    });
+  }
+  function clear() {
+    list.classList.remove('hovering');
+    items.forEach(function (i) { i.classList.remove('on'); });
+  }
+  items.forEach(function (i) {
+    i.addEventListener('mouseenter', function () { show(i); });
+    i.addEventListener('focus', function () { show(i); });
+    i.addEventListener('click', function () { show(i); });
+  });
+  list.addEventListener('mouseleave', clear);
+  list.addEventListener('focusout', function (e) {
+    if (!list.contains(e.relatedTarget)) clear();
+  });
+})();
+</script>
+
+</body></html>
