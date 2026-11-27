@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Player's Guide | Mount &amp; Craft</title>
+<meta name="description" content="How to play Mount & Craft: controls, your warband, companion inventories, combat, the campaign, kingdoms, governors, sieges, family, faith, land and the sea.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Jacquard+24&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --night: #12161a; --stone: #1c2227; --stone-hi: #262e35; --line: #34404a;
+  --parch: #eadfc4; --parch-dim: #b7b09a; --scroll: #d9c9a0; --ink: #1e1810;
+  --banner: #c23a2f; --banner-dk: #8f2a22; --banner-lt: #ee8378; --brass: #d8a93f;
+  --f-display: "Jacquard 24", "Pirata One", Georgia, serif;
+  --f-body: "Alegreya", Georgia, "Times New Roman", serif;
+  --f-pixel: "Silkscreen", "Courier New", monospace;
+  --gutter: max(16px, env(safe-area-inset-left, 0px));
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { margin: 0; background: var(--night); color: var(--parch); font: 18px/1.6 var(--f-body); -webkit-font-smoothing: antialiased; }
+a { color: var(--brass); }
+a:hover { color: var(--parch); }
+img { max-width: 100%; display: block; }
+
+/* header, as on the wiki */
+.top { position: sticky; top: 0; z-index: 10; background: rgba(18,22,26,.94); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+.top-in { max-width: 1180px; margin: 0 auto; padding: 14px var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo { font-family: var(--f-display); font-size: 28px; line-height: 1; color: var(--parch); text-decoration: none; white-space: nowrap; }
+.logo b { color: var(--brass); font-weight: 400; }
+.top nav { display: flex; gap: 18px; flex-wrap: wrap; justify-content: flex-end; }
+.top nav a { font-family: var(--f-pixel); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--parch); text-decoration: none; }
+.top nav a:hover, .top nav a[aria-current] { color: var(--brass); }
+
+/* title */
+.hero { max-width: 1180px; margin: 0 auto; padding: 56px var(--gutter) 28px; }
+.eyebrow { display: inline-block; font-family: var(--f-pixel); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); background: var(--brass); padding: 6px 12px; border: 2px solid var(--ink); }
+h1 { font-family: var(--f-display); font-weight: 400; font-size: clamp(52px, 9vw, 96px); line-height: .95; margin: 18px 0 14px; }
+.lede { max-width: 720px; font-size: 20px; color: var(--parch-dim); margin: 0; }
+.lede strong { color: var(--parch); }
+
+/* layout: contents beside the chapters */
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 var(--gutter) 80px; display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 48px; align-items: start; }
+.toc { position: sticky; top: 88px; max-height: calc(100vh - 110px); overflow: auto; padding-right: 6px; }
+.toc h2 { font-family: var(--f-pixel); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--parch-dim); margin: 0 0 10px; font-weight: 400; }
+.find { width: 100%; font: 16px var(--f-body); color: var(--parch); background: var(--stone); border: 1px solid var(--line); padding: 9px 12px; margin-bottom: 14px; }
+.find:focus { outline: 2px solid var(--brass); outline-offset: 0; }
+.toc ol { list-style: none; margin: 0; padding: 0; }
+.toc li a { display: block; padding: 5px 0 5px 12px; border-left: 2px solid var(--line); color: var(--parch-dim); text-decoration: none; font-size: 16px; }
+.toc li a:hover { color: var(--parch); border-color: var(--parch-dim); }
+.toc li a.on { color: var(--brass); border-color: var(--brass); }
+.toc .none { display: none; color: var(--parch-dim); font-size: 15px; margin: 8px 0 0; }
+
+/* chapters */
+.ch { border-top: 1px solid var(--line); padding: 40px 0 8px; }
+.ch:first-child { border-top: 0; padding-top: 0; }
+.ch > .label { font-family: var(--f-pixel); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--banner-lt); margin: 0 0 6px; }
+.ch h2 { font-family: var(--f-display); font-weight: 400; font-size: clamp(36px, 5vw, 52px); line-height: 1; margin: 0 0 14px; }
+.ch h3 { font-family: var(--f-display); font-weight: 400; font-size: 28px; line-height: 1.1; margin: 28px 0 8px; color: var(--scroll); }
+.ch p { margin: 0 0 14px; }
+.ch ul { margin: 0 0 16px; padding-left: 22px; }
+.ch li { margin: 4px 0; }
+.ch li::marker { color: var(--brass); }
+.dim { color: var(--parch-dim); }
+code { font-family: var(--f-pixel); font-size: .72em; letter-spacing: .02em; background: var(--stone-hi); border: 1px solid var(--line); padding: 2px 6px; color: var(--scroll); white-space: nowrap; }
+
+figure { margin: 22px 0 24px; border: 1px solid var(--line); background: var(--stone); }
+figure img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; image-rendering: auto; }
+figcaption { padding: 10px 14px; font-size: 15px; color: var(--parch-dim); }
+
+.trees figure { margin: 14px 0; }
+.trees figure img { aspect-ratio: 1280 / 672; object-fit: contain; background: #e8d9b5; }
+.trees.tabs figure { display: none; margin-top: 0; border-top: 0; }
+.trees.tabs figure.on { display: block; }
+.tabbar { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; }
+.tabbar button { font-family: var(--f-pixel); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--parch); background: var(--stone); border: 1px solid var(--line); padding: 9px 12px; cursor: pointer; }
+.tabbar button:hover { border-color: var(--parch-dim); }
+.tabbar button[aria-selected="true"] { color: var(--ink); background: var(--brass); border-color: var(--ink); }
+.tabbar button:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin: 8px 0 18px; }
+.card { background: var(--stone); border: 1px solid var(--line); padding: 16px 18px; }
+.card h4 { font-family: var(--f-display); font-weight: 400; font-size: 24px; line-height: 1.1; margin: 0 0 6px; color: var(--parch); }
+.card p { margin: 0; font-size: 16px; color: var(--parch-dim); }
+
+.tip { border-left: 4px solid var(--banner); background: var(--stone); padding: 12px 16px; margin: 18px 0; font-size: 17px; }
+.tip b { font-family: var(--f-pixel); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--banner-lt); font-weight: 400; display: block; margin-bottom: 2px; }
+
+/* controls */
+.keys { width: 100%; border-collapse: collapse; margin: 8px 0 18px; font-size: 17px; }
+.keys td { padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.keys td:first-child { width: 120px; white-space: nowrap; }
+kbd { display: inline-block; min-width: 30px; text-align: center; font-family: var(--f-pixel); font-size: 13px; color: var(--ink); background: var(--scroll); border: 2px solid var(--ink); box-shadow: 0 3px 0 var(--ink-dim, #4a3f2c); padding: 3px 7px 2px; margin: 0 2px 3px 0; }
+
+.steps { counter-reset: s; list-style: none; padding: 0 !important; }
+.steps li { counter-increment: s; position: relative; padding-left: 44px; margin: 10px 0 !important; }
+.steps li::before { content: counter(s); position: absolute; left: 0; top: 2px; width: 30px; height: 30px; display: grid; place-items: center; font-family: var(--f-pixel); font-size: 13px; color: var(--ink); background: var(--brass); border: 2px solid var(--ink); }
+
+.foot { border-top: 1px solid var(--line); }
+.foot-in { max-width: 1180px; margin: 0 auto; padding: 24px var(--gutter) 40px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; color: var(--parch-dim); }
+
+[hidden] { display: none !important; }
+
+@media (max-width: 960px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .toc { position: static; max-height: none; border: 1px solid var(--line); background: var(--stone); padding: 14px 16px; }
+  .toc ol { columns: 2; column-gap: 18px; }
+  .hero { padding-top: 36px; }
+}
+@media (max-width: 520px) {
+  body { font-size: 17px; }
+  .top nav { gap: 12px; }
+  .top nav a.wide { display: none; }
+  .toc ol { columns: 1; }
+  .keys td:first-child { width: 96px; }
+}
+</style>
+</head>
+<body id="top">
+
+<header class="top">
+  <div class="top-in">
+    <a class="logo" href="/">Mount <b>&amp;</b> Craft</a>
+    <nav aria-label="Site">
+      <a href="/">Home</a>
+      <a class="wide" href="/#install">Install</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/guide" aria-current="page">Guide</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="eyebrow">Player's guide &middot; version 1.2.4</span>
+  <h1>Ride out prepared.</h1>
+  <p class="lede">Everything you need to go from <strong>a lone rider with a sword</strong> to a lord with an army, a family and land of your own: the controls, your warband, battle, the campaign, kingdoms, sieges, marriage, faith, building and the sea.</p>
+</section>
+
+<div class="wrap">
+  <aside class="toc" aria-label="Contents">
+    <h2>Contents</h2>
+    <input class="find" type="search" placeholder="Find a topic..." aria-label="Find a topic" id="find">
+    <ol id="toc"></ol>
+    <p class="none" id="none">Nothing matches. Try "siege", "marry" or "map".</p>
+  </aside>
+
+  <main id="guide">
+
+    <section class="ch" id="start" data-title="Getting started">
+      <p class="label"></p>
+      <h2>Getting started</h2>
+      <p>Mount &amp; Craft is a Java Edition modpack. Install it through the Technic Launcher or the CurseForge app (see <a href="/#install">How to install</a>), and always launch Minecraft from the modpack so your version matches the server's.</p>
+      <ol class="steps">
+        <li><strong>Create your character.</strong> Choose your origin, your culture and your faith. They decide where you start, which people trust you, and the temples you can pray at.</li>
+        <li><strong>Learn your sheet.</strong> Press <kbd>C</kbd>. Your hero has four attributes (Strength, Agility, Intelligence, Charisma), skills and weapon proficiencies, and earns points to spend at every level.</li>
+        <li><strong>Find a town.</strong> Walk up to a settlement and open its menu. Towns have markets, taverns, a lord's hall, an arena, siege engineers and more.</li>
+        <li><strong>Raise your first men.</strong> Hire recruits and a companion or two, then ride out and fight something your size.</li>
+      </ol>
+      <div class="tip"><b>Tip</b>Press <kbd>N</kbd> any time for the in-game quest log and guide, and <kbd>B</kbd> for your notes: the game log, characters, locations and factions you have met.</div>
+    </section>
+
+    <section class="ch" id="controls" data-title="Controls">
+      <p class="label"></p>
+      <h2>Controls</h2>
+      <p>These are the default keys. All of them can be changed under <em>Options &rarr; Controls</em>, in the Mount &amp; Craft group.</p>
+      <table class="keys">
+        <tr><td><kbd>P</kbd></td><td>Party: your troops, upgrades and companions</td></tr>
+        <tr><td><kbd>C</kbd></td><td>Character sheet</td></tr>
+        <tr><td><kbd>E</kbd></td><td>Inventory; its <strong>Party</strong> button opens your companions' inventories</td></tr>
+        <tr><td><kbd>M</kbd></td><td>World map of Calradia</td></tr>
+        <tr><td><kbd>F10</kbd></td><td>Detailed map: a closer look at the land around you</td></tr>
+        <tr><td><kbd>V</kbd></td><td>Toggle the nearby minimap</td></tr>
+        <tr><td><kbd>K</kbd></td><td>Land and building</td></tr>
+        <tr><td><kbd>N</kbd></td><td>Quest log and guide</td></tr>
+        <tr><td><kbd>B</kbd></td><td>Notes: game log, characters, locations, factions</td></tr>
+        <tr><td><kbd>F6</kbd> <kbd>F7</kbd> <kbd>F8</kbd></td><td>Orders to your troops: follow me, hold this position, charge</td></tr>
+        <tr><td><kbd>G</kbd></td><td>Kick, to break an enemy's guard</td></tr>
+        <tr><td><kbd>O</kbd></td><td>Battle options in a fight, including withdrawing</td></tr>
+      </table>
+      <p class="dim">Combat also has keys for each attack direction, a thrust, couching a lance and the formation planner; find them in the same Controls group.</p>
+    </section>
+
+    <section class="ch" id="warband" data-title="Your warband">
+      <p class="label"></p>
+      <h2>Your warband</h2>
+      <p>A lone hero gets overrun. Your strength is the party you lead: soldiers you hire, train and keep paid.</p>
+      <figure><img src="img/warband-battle.jpg" alt="Mail-clad soldiers with shields and spears fighting in a village street" loading="lazy" width="1280" height="674"><figcaption>Your warband in the thick of a street fight. Every culture raises its own soldiers, from levied recruits to elite horsemen.</figcaption></figure>
+      <div class="cards">
+        <div class="card"><h4>Recruit</h4><p>Hire men in settlements. Each culture raises its own soldiers, with its own gear and fighting style.</p></div>
+        <div class="card"><h4>Upgrade</h4><p>Soldiers earn experience in battle. In the party screen (<kbd>P</kbd>), promote them along their troop tree: infantry, archers or cavalry.</p></div>
+        <div class="card"><h4>Pay</h4><p>Wages come due every week. Leave your men unpaid and some will desert.</p></div>
+        <div class="card"><h4>Command</h4><p>Order them with <kbd>F6</kbd> follow, <kbd>F7</kbd> hold and <kbd>F8</kbd> charge. When they follow, they march with you across the map.</p></div>
+      </div>
+      <h3>Troop trees</h3>
+      <p>Each culture has its own tree. The number in brackets is the troop's level, and the grey name beside a mounted troop is its horse. Open the party screen (<kbd>P</kbd>) and click a troop to see its whole upgrade family.</p>
+      <div class="trees" id="trees">
+        <figure class="tree" id="tree-swadia" data-label="Swadia"><img src="img/troops-swadia.png" alt="Troop upgrade tree of the Kingdom of Swadia, listing each troop with its level and type" loading="lazy" width="1280" height="672"><figcaption>Kingdom of Swadia</figcaption></figure>
+        <figure class="tree" id="tree-vaegirs" data-label="Vaegirs"><img src="img/troops-vaegirs.png" alt="Troop upgrade tree of the Kingdom of Vaegirs, listing each troop with its level and type" loading="lazy" width="1280" height="672"><figcaption>Kingdom of Vaegirs</figcaption></figure>
+        <figure class="tree" id="tree-khergit" data-label="Khergits"><img src="img/troops-khergit.png" alt="Troop upgrade tree of the Khergit Khanate, listing each troop with its level and type" loading="lazy" width="1280" height="672"><figcaption>Khergit Khanate</figcaption></figure>
+        <figure class="tree" id="tree-nords" data-label="Nords"><img src="img/troops-nords.png" alt="Troop upgrade tree of the Kingdom of Nords, listing each troop with its level and type" loading="lazy" width="1280" height="672"><figcaption>Kingdom of Nords</figcaption></figure>
+        <figure class="tree" id="tree-rhodoks" data-label="Rhodoks"><img src="img/troops-rhodoks.png" alt="Troop upgrade tree of the Kingdom of Rhodoks, listing each troop with its level and type" loading="lazy" width="1280" height="672"><figcaption>Kingdom of Rhodoks</figcaption></figure>
+        <figure class="tree" id="tree-sarranid" data-label="Sarranids"><img src="img/troops-sarranid.png" alt="Troop upgrade tree of the Sarranid Sultanate, listing each troop with its level and type" loading="lazy" width="1280" height="672"><figcaption>Sarranid Sultanate</figcaption></figure>
+        <figure class="tree" id="tree-zendar" data-label="Zendar"><img src="img/troops-zendar.png" alt="Troop upgrade tree of the Merchant Republic of Zendar, listing each troop with its level and type" loading="lazy" width="1280" height="672"><figcaption>Merchant Republic of Zendar</figcaption></figure>
+      </div>
+      <div class="tip"><b>Reading a tree</b>A tree forks as it climbs. Pick the branch you want when you promote: infantry to hold the line, archers or crossbowmen to thin the enemy, cavalry to run them down. Khergit trees lean on horse archers, and Zendar has a second root of its own, the Caravan Escort, for its cavalry.</div>
+      <h3>Companions</h3>
+      <p>Sixteen heroes wander the taverns of Calradia, a week in each town. Talk to one, pay their fee and they join you. Companions are never killed in battle: they are wounded, fall back and recover.</p>
+      <ul>
+        <li><strong>Train them.</strong> Talk to a companion from the party screen to spend their attribute, skill and weapon points as they level.</li>
+        <li><strong>Equip them</strong> from their own inventory: press <kbd>E</kbd>, then <strong>Party</strong>. See <a href="#packs">Companion inventories</a>.</li>
+        <li><strong>Rename them</strong>, or, once you rule a kingdom with land to grant, <strong>make one a lord</strong>.</li>
+      </ul>
+    </section>
+
+    <section class="ch" id="packs" data-title="Companion inventories">
+      <p class="label"></p>
+      <h2>Companion inventories</h2>
+      <p>Every companion carries their own gear and a pack of their own. Open it from your inventory and move things between you as you would with a chest.</p>
+      <figure><img src="img/companions.jpg" alt="The companion inventory screen showing equipment slots, a figure of the companion, a pack and the player's inventory" loading="lazy" width="1280" height="720"><figcaption>Lady Anna's inventory: her equipment down the left beside a figure of her, her pack on the right, your inventory below.</figcaption></figure>
+      <h3>Opening it</h3>
+      <ol class="steps">
+        <li>Press <kbd>E</kbd> to open your inventory.</li>
+        <li>Click the <strong>Party</strong> button, beside the horse button above your inventory.</li>
+        <li>The first companion's inventory opens. Use <strong>&lt;</strong> and <strong>&gt;</strong> to step to the next or previous one, and <strong>Back</strong> to return to your own inventory.</li>
+      </ol>
+      <h3>What it holds</h3>
+      <table class="keys">
+        <tr><td>Weapon</td><td>The weapon in their hand</td></tr>
+        <tr><td>Shield</td><td>A shield or an offhand item</td></tr>
+        <tr><td>Helmet</td><td>Headgear</td></tr>
+        <tr><td>Body armour</td><td>Mail, plate, a gambeson or a robe</td></tr>
+        <tr><td>Boots</td><td>Footwear</td></tr>
+        <tr><td>Pack</td><td>20 slots for anything else: food, arrows, spare gear, loot</td></tr>
+      </table>
+      <ul>
+        <li><strong>Click</strong> an item to pick it up and click a slot to put it down. <strong>Shift-click</strong> moves it straight across: from you into their pack (or the matching empty equipment slot), or from them back to you.</li>
+        <li>An equipment slot takes <strong>one matching Mount &amp; Craft item</strong>. An apple is not a helmet, and the slot will refuse it.</li>
+        <li>What you put in the weapon slot is what they fight with. Swapping a bow for a sword turns an archer into a swordsman.</li>
+      </ul>
+      <h3>Whose inventories</h3>
+      <p>Everyone in your party you can manage: <strong>your spouse first</strong>, then <strong>your grown children</strong> and kin, then your <strong>hired companions</strong> by name. Ordinary soldiers keep the kit of their troop type.</p>
+      <h3>In the saddle</h3>
+      <p>Riding, <kbd>E</kbd> opens your horse's inventory instead of yours. It has the same <strong>Party</strong> button, to the right of the horse's panel, and your companions' packs open while they march with you.</p>
+      <figure><img src="img/riding.jpg" alt="The companion inventory opened while riding, with carrots moved into the companion's pack" loading="lazy" width="1280" height="720"><figcaption>Opened from the saddle: carrots shift-clicked into her pack while she marches with you.</figcaption></figure>
+      <div class="tip"><b>When it will not open</b>A companion has to be <strong>near you</strong>, <strong>recovered</strong> from any wound and <strong>outside battle</strong>. A wounded companion's pack opens again once they are back on their feet.</div>
+      <p class="dim">A pack travels with its owner: send your spouse or a son home and they keep everything they carried for the next time they ride with you.</p>
+    </section>
+
+    <section class="ch" id="combat" data-title="Combat">
+      <p class="label"></p>
+      <h2>Combat</h2>
+      <p>Fighting is directional, as in Mount &amp; Blade. Pick your blow (a swing from the left or right, an overhead or a thrust), and watch which side your enemy guards.</p>
+      <ul>
+        <li><strong>Read the wind-up.</strong> Soldiers draw back before they strike, so you can see the blow coming and guard against it.</li>
+        <li><strong>Break a guard</strong> with a kick (<kbd>G</kbd>), then strike before they recover.</li>
+        <li><strong>Mounted.</strong> Charge with a lance and couch it at the gallop for a crushing hit, or cut down from the saddle with a sword.</li>
+        <li><strong>Missiles.</strong> Bows, crossbows and throwing weapons hit harder to the head.</li>
+      </ul>
+      <h3>Field battles</h3>
+      <p>Meet a hostile party and a battle begins on its own field. Your men deploy beside you and reinforcements arrive in waves. Press <kbd>O</kbd> for battle options, including withdrawing. Beaten enemies can be taken prisoner; your fallen soldiers may be saved by a good surgeon.</p>
+      <div class="tip"><b>Tip</b>Order a charge (<kbd>F8</kbd>) when you want your men to close with the enemy. Left on "follow", they stay at your side, and archers will pick them off while they wait.</div>
+    </section>
+
+    <section class="ch" id="campaign" data-title="The campaign">
+      <p class="label"></p>
+      <h2>The campaign</h2>
+      <p>Calradia is alive without you: lords march, caravans trade, bandits raid and wars are declared and ended.</p>
+      <figure><img src="img/map.jpg" alt="The world map of Calradia with kingdoms coloured and town names" loading="lazy" width="1280" height="720"><figcaption>The world map (<kbd>M</kbd>): every town, castle and village, the kingdoms and their wars. Click a noble or a settlement for more. Press <kbd>F10</kbd> for the detailed map.</figcaption></figure>
+      <div class="cards">
+        <div class="card"><h4>The calendar</h4><p>The campaign keeps its own days, weeks and years. Wages, rents and family life follow it.</p></div>
+        <div class="card"><h4>Caravans</h4><p>Merchants travel between towns, by sea where the coast allows. Escort them, or raid them and make enemies.</p></div>
+        <div class="card"><h4>Mines</h4><p>Mines are marked on your map: mineshafts to explore, with loot below and sometimes a bandit hideout.</p></div>
+        <div class="card"><h4>Villages</h4><p>Villages feed their towns. Raid one and you choose: take what you can, or raze it.</p></div>
+        <div class="card"><h4>Tournaments</h4><p>Town arenas hold tournaments with blunted weapons. Win for gold and renown.</p></div>
+        <div class="card"><h4>The minimap</h4><p>Press <kbd>V</kbd> for the people and places near you, or <kbd>F10</kbd> for the detailed map.</p></div>
+      </div>
+    </section>
+
+    <section class="ch" id="kingdoms" data-title="Kingdoms and fiefs">
+      <p class="label"></p>
+      <h2>Kingdoms and fiefs</h2>
+      <p>Six kingdoms hold the map: Swadia, the Vaegirs, the Khergit Khanate, the Nords, the Rhodoks and the Sarranid Sultanate. Serve one, or found your own.</p>
+      <h3>Rising in the world</h3>
+      <ul>
+        <li><strong>Swear an oath</strong> to a lord and serve his kingdom. Loyal vassals are granted fiefs: castles, towns and villages.</li>
+        <li><strong>Found a kingdom.</strong> Hold land of your own and you can proclaim a realm, persuade lords to join you, and choose how it is governed.</li>
+        <li><strong>Clans.</strong> From level 10, found a clan with <code>/warband clan create &lt;name&gt;</code>, invite players, name its ranks and set its banner. The leader decides which kingdom the clan follows.</li>
+        <li><strong>Jobs.</strong> <code>/warband job</code> lists the offices: captain, guard, builder, farmer, trader and miner. Each one does something real.</li>
+      </ul>
+      <h3>Running your fiefs</h3>
+      <ul>
+        <li><strong>Prosperity, rent and taxes.</strong> A fief's menu shows its wealth. Prosperous places pay you more.</li>
+        <li><strong>Garrison and development.</strong> Station troops to defend it and invest in its development.</li>
+        <li><strong>Unrest.</strong> A people of another culture or faith grows restless under a foreign lord. Left alone, unrest becomes an uprising, and the rebels lay siege.</li>
+        <li><strong>Governors.</strong> Set a grown son or daughter over a fief. See <a href="#governors">Governors</a>.</li>
+        <li><strong>Rename it.</strong> A fief you hold has a <strong>Rename</strong> line in its menu. The new name shows on the world map, the minimap, its floating name and its signs.</li>
+      </ul>
+    </section>
+
+    <section class="ch" id="governors" data-title="Governors">
+      <p class="label"></p>
+      <h2>Governors</h2>
+      <p>A fief runs better with one of your own blood in charge. Set a grown son or daughter, or after a succession a brother or sister, over a castle, town or village you hold, and it gains every day they govern.</p>
+      <h3>Appointing a governor</h3>
+      <ol class="steps">
+        <li><strong>Hold the fief yourself.</strong> Only fiefs held in your own name can be given a governor.</li>
+        <li><strong>Have someone of age.</strong> A son, daughter, brother or sister of 18 or more, who is <strong>not riding with you</strong>. Send them home first if they are in your party.</li>
+        <li><strong>Open the family screen</strong> and choose <em>"Make your son ... governor of ..."</em>.</li>
+      </ol>
+      <p>One governor to a fief, and one fief to a governor. The fief's menu names its governor and shows what they bring.</p>
+      <h3>What a governor does, each day</h3>
+      <table class="keys">
+        <tr><td>Prosperity</td><td><strong>+1</strong> a day, and <strong>+1 more</strong> for a governor gifted in Intelligence</td></tr>
+        <tr><td>Rent</td><td><strong>+10%</strong> to what the fief pays you, and <strong>+5%</strong> for each point of Charisma talent</td></tr>
+        <tr><td>Unrest</td><td>Grows <strong>2 less</strong> a day, or <strong>4 less</strong> when the governor is of the people's own culture</td></tr>
+      </table>
+      <div class="tip"><b>Choosing well</b>A child's talents are theirs from birth. Put a clever one where prosperity matters, a charming one where the rent is rich, and a governor of the townsfolk's own culture wherever unrest is rising.</div>
+      <h3>When it ends</h3>
+      <ul>
+        <li><strong>Recall them</strong> from the family screen and they come home. A governor cannot ride with you until recalled.</li>
+        <li><strong>Lose the fief</strong>, by siege, by grant or by giving it up, and the governorship ends.</li>
+        <li><strong>At a succession</strong>, an heir who governed becomes the head of the house, and that post ends. The rest of the family keep theirs.</li>
+      </ul>
+    </section>
+
+    <section class="ch" id="sieges" data-title="Sieges">
+      <p class="label"></p>
+      <h2>Sieges</h2>
+      <p>Walls do not fall to a charge. A siege is a campaign of its own.</p>
+      <figure><img src="img/siege.jpg" alt="A wooden siege tower drawn up against a castle wall" loading="lazy" width="1280" height="720"><figcaption>A siege tower docked against the wall, its bridge down.</figcaption></figure>
+      <ol class="steps">
+        <li><strong>Make camp</strong> before the walls and cut the town off.</li>
+        <li><strong>Get your engines.</strong> Siege engineers in towns and castles sell and build trebuchets, catapults, battering rams and siege towers. Your infantry build them on site.</li>
+        <li><strong>Batter the gate.</strong> Gates are strong, and show a health bar as they weaken.</li>
+        <li><strong>Assault.</strong> Climb the ladders, roll a tower up to the battlements, or break the gate and storm in.</li>
+      </ol>
+      <div class="tip"><b>Tip</b>Defenders can sally out and pour burning oil on attackers below. Bring enough men, and bring engines.</div>
+    </section>
+
+    <section class="ch" id="family" data-title="Marriage and family">
+      <p class="label"></p>
+      <h2>Marriage and family</h2>
+      <p>A house outlives its founder. Marry, raise children and choose who carries your name.</p>
+      <figure><img src="img/family.jpg" alt="Noble ladies in long gowns and headdresses of several cultures" loading="lazy" width="1280" height="720"><figcaption>The noble ladies of Calradia, each in her own culture's dress.</figcaption></figure>
+      <ul>
+        <li><strong>Courtship.</strong> Visit a lord's hall and speak with an eligible lady or young lord. Win them over through conversation, poetry and tournament victories, then agree terms with their household.</li>
+        <li><strong>Children.</strong> A household year passes in twelve campaign days. Children take after either parent's culture and faith, and come of age at eighteen.</li>
+        <li><strong>Your spouse at your side.</strong> Ask your spouse to join your party at their home hall. They fight, train and are equipped like a companion.</li>
+        <li><strong>Grown children.</strong> Sons and daughters of age can ride with you as companions (<a href="#packs">with their own inventories</a>), or <a href="#governors">govern your fiefs</a>.</li>
+        <li><strong>Succession.</strong> Old age comes for everyone. When you die, you play on as an adult son or daughter, a brother or sister, or your widowed spouse.</li>
+      </ul>
+    </section>
+
+    <section class="ch" id="faith" data-title="Faith and culture">
+      <p class="label"></p>
+      <h2>Faith and culture</h2>
+      <p>Every person, town and realm has a culture and a faith, and they matter.</p>
+      <figure><img src="img/faith.jpg" alt="A Zoroastrian fire temple with a domed pavilion, pools and cypress trees" loading="lazy" width="1280" height="720"><figcaption>A Zoroastrian fire temple, found in Darshi towns.</figcaption></figure>
+      <ul>
+        <li><strong>Temples.</strong> Pray and give gifts at your faith's places of worship.</li>
+        <li><strong>Conversion.</strong> You can change your faith at a temple. Persuade nobles to yours, or have a realm adopt a state religion by decree or by vote.</li>
+        <li><strong>Unrest.</strong> Ruling a people of another faith or culture breeds unrest; good administration, a garrison and a governor of their own culture all help.</li>
+        <li><strong>The Darshi.</strong> A Persian-inspired people with their own troop tree and battlefield doctrine, and the Zoroastrian faith.</li>
+      </ul>
+    </section>
+
+    <section class="ch" id="land" data-title="Land and building">
+      <p class="label"></p>
+      <h2>Land and building</h2>
+      <p>Press <kbd>K</kbd> for land and building. Claim land, found a village of your own, and put workers to building from blueprints. Lay roads and bridges to link your holdings. A village counts as land, so it helps you proclaim a kingdom.</p>
+    </section>
+
+    <section class="ch" id="sea" data-title="At sea">
+      <p class="label"></p>
+      <h2>At sea</h2>
+      <p>With the <em>Small Ships</em> mod installed alongside Mount &amp; Craft, Calradia's coasts come alive: coastal towns have shipyards where ships are built and sold, lords and caravans sail between ports, and raiders strike at sea.</p>
+      <figure><img src="img/sea.jpg" alt="A newly launched ship beside a shipyard and its breakwater" loading="lazy" width="1280" height="720"><figcaption>A ship launched from a coastal town's shipyard.</figcaption></figure>
+      <p class="dim">Small Ships is a separate mod and is not included in the modpack. Install it yourself if you want the naval side of the game.</p>
+    </section>
+
+    <section class="ch" id="help" data-title="Getting help">
+      <p class="label"></p>
+      <h2>Getting help</h2>
+      <p>Stuck, or found a bug? Check the <a href="/wiki">wiki</a>, ask in our Discord (the <a href="/">Join Discord</a> button on the home page), or read the in-game guide with <kbd>N</kbd>. Keep the modpack up to date in your launcher, or the server will turn you away.</p>
+    </section>
+
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="foot-in">
+    <span>Mount &amp; Craft player's guide, for version 1.2.4.</span>
+    <a href="#top" onclick="window.scrollTo({top:0});return false;">Back to the top</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var chapters = Array.prototype.slice.call(document.querySelectorAll('.ch'));
+  var toc = document.getElementById('toc'), none = document.getElementById('none'), find = document.getElementById('find');
+  chapters.forEach(function (c, i) { var l = c.querySelector('.label'); if (l) l.textContent = 'Chapter ' + (i + 1); });
+  var links = chapters.map(function (c) {
+    var li = document.createElement('li'), a = document.createElement('a');
+    a.href = '#' + c.id; a.textContent = c.getAttribute('data-title'); li.appendChild(a); toc.appendChild(li); return a;
+  });
+  // the chapter being read is marked in the contents
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); }); });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    chapters.forEach(function (c) { io.observe(c); });
+  }
+  // troop trees: one kingdom at a time (all are shown stacked if scripts are off)
+  var trees = document.getElementById('trees');
+  if (trees) {
+    var figs = Array.prototype.slice.call(trees.querySelectorAll('figure.tree')), bar = document.createElement('div'), btns = [];
+    bar.className = 'tabbar'; bar.setAttribute('role', 'tablist'); bar.setAttribute('aria-label', 'Kingdom');
+    function show(i, focus) {
+      figs.forEach(function (f, j) { f.classList.toggle('on', i === j); btns[j].setAttribute('aria-selected', i === j); btns[j].tabIndex = i === j ? 0 : -1; });
+      if (focus) btns[i].focus();
+    }
+    figs.forEach(function (f, i) {
+      var b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'tab'); b.textContent = f.getAttribute('data-label');
+      b.addEventListener('click', function () { show(i); });
+      b.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (d) { e.preventDefault(); show((i + d + figs.length) % figs.length, true); }
+      });
+      btns.push(b); bar.appendChild(b); f.setAttribute('role', 'tabpanel'); f.querySelector('img').loading = 'eager';
+    });
+    trees.classList.add('tabs'); trees.insertBefore(bar, trees.firstChild); show(0);
+  }
+  // find a topic: chapters whose text holds every word typed
+  find.addEventListener('input', function () {
+    var words = find.value.toLowerCase().split(/\s+/).filter(Boolean), shown = 0;
+    chapters.forEach(function (c, i) {
+      var text = c.textContent.toLowerCase(), hit = words.every(function (w) { return text.indexOf(w) >= 0; });
+      c.hidden = !hit; links[i].parentNode.hidden = !hit; if (hit) shown++;
+    });
+    none.style.display = shown ? 'none' : 'block';
+  });
+})();
+</script>
+</body>
+</html>
